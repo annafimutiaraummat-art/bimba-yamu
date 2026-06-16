@@ -311,7 +311,7 @@ export default function BimbaLandingPage() {
       </section>
 
       {/* ======================================================== */}
-      {/* 6. BERITA SEPUTAR BIMBA (FIXED SMART MEDIA CARDS DETECTOR) */}
+      {/* 6. BERITA SEPUTAR BIMBA (SMART YOUTUBE THUMBNAIL DETECTOR) */}
       {/* ======================================================== */}
       <section id="berita" className="max-w-7xl mx-auto px-6 lg:px-8 py-20 scroll-mt-12">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
@@ -332,16 +332,40 @@ export default function BimbaLandingPage() {
             ))
           ) : news.length > 0 ? (
             news.map(item => {
-              const hasVideo = !!item.video_url; // Deteksi apakah post ini mengandung video
+              const hasVideo = !!item.video_url;
               
+              // 1. Fungsi Pintar Deteksi ID YouTube
+              const getYouTubeId = (url: string) => {
+                if (!url) return null;
+                const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+                const match = url.match(regExp);
+                return (match && match[2].length === 11) ? match[2] : null;
+              };
+              
+              const ytId = hasVideo ? getYouTubeId(item.video_url) : null;
+              
+              // 2. Logika Prioritas Thumbnail: 
+              // Pakai foto uploadan admin -> Kalo kosong, sedot thumbnail YouTube -> Kalo bukan youtube, kosong.
+              const thumbnailSrc = item.image_url 
+                ? item.image_url 
+                : (ytId ? `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg` : '');
+
               return (
                 <Link href={`/berita/${item.id}`} key={item.id} className="group bg-white rounded-2xl border border-slate-200/60 overflow-hidden shadow-sm hover:shadow-md hover:border-slate-400 flex flex-col h-96 transition-all duration-300 relative">
                   
                   {/* Bagian Media Thumbnail */}
-                  <div className="h-44 bg-slate-100 shrink-0 overflow-hidden relative">
-                    <img src={item.image_url} alt={item.title} className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500" />
+                  <div className="h-44 bg-slate-100 shrink-0 overflow-hidden relative flex items-center justify-center">
                     
-                    {/* PERBAIKAN: Jika ada Video, tampilkan Tombol Play Glassmorphism & Badge Video di Atas Gambar */}
+                    {thumbnailSrc ? (
+                      <img src={thumbnailSrc} alt={item.title} className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500" />
+                    ) : (
+                      <div className="text-slate-400 flex flex-col items-center justify-center opacity-50">
+                        <Play className="w-8 h-8 mb-1" />
+                        <span className="text-[9px] font-black uppercase tracking-widest">Video Tersedia</span>
+                      </div>
+                    )}
+                    
+                    {/* Badge & Tombol Play Jika Ada Video */}
                     {hasVideo && (
                       <>
                         <div className="absolute inset-0 bg-slate-950/20 backdrop-blur-[0.5px] transition-opacity group-hover:opacity-40" />
