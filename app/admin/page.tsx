@@ -167,7 +167,6 @@ export default function BimbaAdminPanel() {
         </div>
         <div className="flex flex-col gap-1.5 flex-grow text-xs font-bold text-slate-500">
           <button onClick={() => setActiveMenu('dashboard')} className={`flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all ${activeMenu === 'dashboard' ? 'bg-blue-50 text-blue-900 border border-blue-100' : 'hover:bg-slate-50 hover:text-slate-900 border border-transparent'}`}><LayoutDashboard className="w-4 h-4" /> Dashboard Ringkas</button>
-          <button onClick={() => setActiveMenu('program')} className={`flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all ${activeMenu === 'program' ? 'bg-blue-50 text-blue-900 border border-blue-100' : 'hover:bg-slate-50 hover:text-slate-900 border border-transparent'}`}><PlusCircle className="w-4 h-4" /> Kelola Program Kelas</button>
           <button onClick={() => setActiveMenu('berita')} className={`flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all ${activeMenu === 'berita' ? 'bg-blue-50 text-blue-900 border border-blue-100' : 'hover:bg-slate-50 hover:text-slate-900 border border-transparent'}`}><FileText className="w-4 h-4" /> Rilis Berita & Video</button>
         </div>
         <button onClick={handleLogout} className="flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl font-black text-xs text-rose-600 bg-rose-50 hover:bg-rose-100 border border-rose-100 transition-colors uppercase tracking-wider"><LogOut className="w-4 h-4" /> Keluar</button>
@@ -194,42 +193,6 @@ export default function BimbaAdminPanel() {
               <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between h-36">
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2"><Video className="w-4 h-4 text-rose-500" /> Total Publikasi & Video</span>
                 <span className="text-3xl font-black text-slate-900">{articles.length} <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Tayang</span></span>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* ======================= PROGRAM AKADEMIK ======================= */}
-        {activeMenu === 'program' && (
-          <div className="space-y-8">
-            <div className="bg-white rounded-[2rem] p-6 md:p-8 shadow-sm border border-slate-200">
-              <h2 className="text-base font-black text-slate-900 uppercase tracking-wider mb-6">Tambah Program Belajar Baru</h2>
-              <form onSubmit={handleSaveProgram} className="space-y-5 text-xs font-bold text-slate-600 uppercase tracking-wider">
-                <div className="space-y-1.5"><label>Nama Program *</label><input type="text" required value={progTitle} onChange={(e) => setProgTitle(e.target.value)} className="w-full bg-slate-50 border border-slate-200 p-3.5 rounded-xl focus:outline-none focus:border-blue-500 text-slate-900 font-bold normal-case" /></div>
-                <div className="space-y-1.5">
-                  <label>Foto Dokumentasi Kelas *</label>
-                  <div className="border-2 border-dashed border-slate-300 p-6 rounded-xl bg-slate-50 relative cursor-pointer hover:border-blue-500 flex flex-col items-center justify-center">
-                    <input type="file" accept="image/*" required onChange={(e) => setProgFile(e.target.files?.[0] || null)} className="absolute inset-0 opacity-0 cursor-pointer" />
-                    <Upload className="w-5 h-5 text-slate-400 mb-2" />
-                    <span className="text-slate-500 block text-center normal-case">{progFile ? <span className="text-blue-600 font-black">✓ Berkas Siap: {progFile.name}</span> : 'Klik atau tarik foto di sini'}</span>
-                  </div>
-                </div>
-                <div className="space-y-1.5"><label>Deskripsi Silabus *</label><textarea rows={5} required value={progDesc} onChange={(e) => setProgDesc(e.target.value)} className="w-full bg-slate-50 border border-slate-200 p-4 rounded-xl focus:outline-none focus:border-blue-500 text-slate-900 font-medium normal-case" /></div>
-                <button type="submit" disabled={loading} className="w-full py-4 bg-blue-900 hover:bg-blue-950 text-white rounded-xl shadow-md flex items-center justify-center gap-2 font-black text-xs uppercase tracking-wider transition-colors">
-                  {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Simpan Program'}
-                </button>
-              </form>
-            </div>
-            
-            <div className="bg-white rounded-[2rem] p-6 md:p-8 shadow-sm border border-slate-200">
-              <h3 className="font-black text-xs text-slate-900 uppercase tracking-wider mb-4 border-b border-slate-100 pb-4">Arsip Program Bimba</h3>
-              <div className="space-y-3">
-                {programs.map(p => (
-                  <div key={p.id} className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 border border-slate-200">
-                    <div className="font-bold text-sm text-slate-800">{p.title}</div>
-                    <button onClick={() => handleDelete('bimba_programs', p.id, fetchPrograms)} className="p-2 text-rose-600 bg-rose-100 hover:bg-rose-200 rounded-xl transition-colors"><Trash2 className="w-4 h-4" /></button>
-                  </div>
-                ))}
               </div>
             </div>
           </div>
