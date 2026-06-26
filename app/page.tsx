@@ -109,19 +109,32 @@ export default function BimbaLandingPage() {
         <div className="absolute top-[-15%] right-[-5%] w-[550px] h-[550px] bg-blue-900/5 rounded-full blur-[100px] anim-pulse-soft pointer-events-none" />
         
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center space-y-6 relative z-10">
+          {/* 1. Ganti bagian Badge Melayang */}
           <div className="anim-entrance flex justify-center">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-200 bg-slate-50 text-slate-500 text-[10px] font-bold tracking-widest uppercase shadow-sm">
-              <Sparkles className="w-3.5 h-3.5 text-blue-900" /> Pusat Pengembangan Literasi Anak Usia Dini
+            <div className="inline-flex items-center gap-4 px-5 py-2.5 rounded-full border border-slate-200 bg-slate-50/80 backdrop-blur-sm shadow-sm select-none">
+              {/* Logo Bimba Bintang Junior */}
+              <img src="/bimba.png" alt="Bimba Bintang Junior" className="h-6 w-auto object-contain" />
+              
+              {/* Garis Pembatas Elegan */}
+              <div className="w-px h-4 bg-slate-300"></div>
+              
+              {/* Logo YAMU Peduli */}
+              <img src="/yamu.png" alt="YAMU Peduli" className="h-5 w-auto object-contain" />
+              
+              <div className="w-px h-4 bg-slate-300"></div>
+              <span className="text-[9px] font-black text-slate-500 uppercase tracking-widest">Kemitraan Resmi</span>
             </div>
           </div>
-          
+
+          {/* 2. Ganti Judul Utama (H1) */}
           <h1 className="anim-entrance delay-1 text-4xl sm:text-6xl lg:text-7xl font-black text-slate-900 tracking-tight leading-[1.1] max-w-4xl mx-auto">
-            Membentuk Fondasi, <br />
-            <span className="bg-gradient-to-r from-blue-900 to-blue-700 bg-clip-text text-transparent">Mengantarkan Cita-Cita</span>
+            Bimba Bintang Junior <br />
+            <span className="bg-gradient-to-r from-blue-900 to-blue-700 bg-clip-text text-transparent">Unit Mitra YAMU Jombang</span>
           </h1>
-          
+
+          {/* 3. Ganti Deskripsi (P) */}
           <p className="anim-entrance delay-2 text-slate-500 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-medium">
-            Program bimbingan belajar calistung dan penguatan karakter kognitif khusus anak usia 4-7 tahun. Menggunakan metode interaktif yang menyenangkan dan terukur.
+            Membawa standardisasi metode baca, tulis, dan hitung nasional dari Bimba Bintang Junior langsung ke lingkungan Anda. Hadir di Villa Jombang Baru, 100% bersubsidi penuh khusus anak yatim & dhuafa.
           </p>
           
           <div className="anim-entrance delay-3 flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
@@ -147,13 +160,15 @@ export default function BimbaLandingPage() {
           
           {/* Kiri: Blok Visi Struktural */}
           <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-28">
-            <span className="text-blue-900 font-black text-xs uppercase tracking-widest bg-blue-50 px-3 py-1.5 rounded-lg border border-blue-100 inline-block">Hilirisasi Program</span>
-            <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight leading-none">Visi Akademik</h2>
-            <div className="w-12 h-1 bg-blue-900 rounded-full my-4" />
+            <span className="text-blue-900 font-extrabold text-xs uppercase tracking-widest block">Sinergi Pendidikan</span>
+            <h2 className="text-2xl md:text-4xl font-black text-slate-900 tracking-tight">Standardisasi Kurikulum Nasional</h2>            <div className="w-12 h-1 bg-blue-900 rounded-full my-4" />
             <div className="p-8 bg-white border border-slate-200 rounded-[2rem] shadow-sm relative overflow-hidden group hover:border-slate-400 transition-all duration-300">
               <div className="absolute top-0 left-0 w-1.5 h-full bg-blue-900" />
-              <p className="text-slate-800 font-bold text-lg md:text-xl leading-relaxed normal-case">
-                "Menjadi pusat bimbingan belajar usia dini yang unggul dalam melatih kesiapan kognitif, kemandirian karakter, dan literasi dasar anak demi menyambut masa depan pendidikan yang cemerlang."
+              <p className="text-slate-600 text-sm md:text-base leading-relaxed font-medium">
+                Unit belajar ini merupakan cabang mitra resmi yang mengadopsi penuh sistem serta metode pengajaran profesional dari **Bimba Bintang Junior**. 
+              </p>
+              <p className="text-slate-600 text-sm md:text-base leading-relaxed font-medium">
+                Didukung penuh oleh infrastruktur dan fasilitas dari **Yayasan An-Nafi Mutiara Ummat (YAMU)**, kami memastikan putra-putri Anda mendapatkan pendampingan belajar terbaik yang ramah anak, berlokasi strategis di wilayah Jombang, Ciputat.
               </p>
             </div>
           </div>
@@ -472,8 +487,8 @@ export default function BimbaLandingPage() {
             </div>
 
             <div>
-              <h4 className="text-xs font-black text-slate-900 uppercase tracking-widest mb-4 border-b border-slate-100 pb-2">Saluran Komunikasi</h4>
-              <div className="flex items-center gap-2">
+              <h3 className="text-base font-black text-slate-950 tracking-tight leading-none">Bintang Junior</h3>
+              <span className="text-[9px] font-extrabold text-slate-400 uppercase tracking-widest mt-1 block">Mitra Program YAMU Jombang</span>              <div className="flex items-center gap-2">
                 <div className="relative" ref={dropdownRef}>
                   <button 
                     onClick={() => setShowSocials(!showSocials)}
@@ -504,7 +519,7 @@ export default function BimbaLandingPage() {
           </div>
 
           <div className="pt-6 border-t border-slate-200/80 text-center text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-            <p>© {new Date().getFullYear()} Bimba Akademik. Afiliasi Program Pendidikan Kemandirian YAMU Peduli.</p>
+            <p>© {new Date().getFullYear()} Bimba Bintang Junior. Diselenggarakan oleh Yayasan An-Nafi Mutiara Ummat Cabang Jombang.</p>
           </div>
         </div>
       </footer>
